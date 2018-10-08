@@ -4,6 +4,7 @@ module.exports = function(app){
     });
     app.post('/', function(req, res){
         console.log('Vc está fazendo um POST');
-        res.render('login');
+        //se login for OK, redireciona para HOME
+        res.render('home');
     });
 }
