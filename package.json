@@ -1,0 +1,29 @@
+{
+  "name": "meteorologica",
+  "version": "1.0.0",
+  "description": "Estação meteorológica",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diegocacilha/estacaoMeteorologica.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/diegocacilha/estacaoMeteorologica/issues"
+  },
+  "homepage": "https://github.com/diegocacilha/estacaoMeteorologica#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-load": "^1.1.16",
+    "mysql": "^2.16.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
