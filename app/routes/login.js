@@ -3,8 +3,10 @@ module.exports = function(app){
         res.render('login');
     });
     app.post('/', function(req, res){
-        console.log('Vc está fazendo um POST');
+        console.log('Vc está fazendo um POST: ');
+        console.log(req.body);
+
         //se login for OK, redireciona para HOME
-        res.render('home');
+        res.redirect('/');
     });
 }
