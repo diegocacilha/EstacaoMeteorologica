@@ -5,6 +5,8 @@ var port = process.env.PORT || 3000;
 var bodyParser = require('body-parser');
 var load = require('express-load');
 
+//exporta as libs para o frontend
+app.use(express.static('./app/public/'));//add locais estáticos
 
 app.use(bodyParser.urlencoded({extended: true}));
 //sempre será executado ao receber uma requisição
