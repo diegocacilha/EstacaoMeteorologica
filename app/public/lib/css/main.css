@@ -1,0 +1,56 @@
+.caixa {
+  position: absolute;
+  height: 100%!important;
+  left: 0;
+  padding: 0px 4em 0px 4em;
+}
+
+.caixa p, label{
+  color: #6c757d;
+}
+
+.background-login {
+  background-image: url("../img/capa-login.jpg");
+  background-size: cover;
+  height: 100%;
+  position: absolute;
+  right: 0;
+}
+
+.background-login h1{
+  font-family: 'Raleway', sans-serif;
+  color: white;
+  margin-top: 3em;
+  text-align: center;
+}
+
+.background-login h2{
+  font-family: 'Raleway', sans-serif;
+  font-family: 'Allura', cursive;
+  color: white;
+  text-align: center;
+}
+
+.formulario-login{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.texto-secundario-login{
+  margin-bottom: 2.85rem;
+}
+
+.redes-sociais{
+  margin-top: 2.85rem;
+  text-align: center;
+}
+
+.cadastro{
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.aspas{
+  font-size: 80px;
+}

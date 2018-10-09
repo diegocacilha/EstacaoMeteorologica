@@ -1,13 +1,67 @@
-<html>
-    <head>
-        <title>Página Inicial</title>
-    </head>
-    <body>
-        <h1>Página de Login</h1>
-        <form action="/" method="POST">
-            <input type="text" placeholder="Usuário">
-            <input type="password" placeholder="Senha">
-            <input type="submit" value="Acessar">
-        </form>
-    </body>
+<!DOCTYPE html>
+<html lang="" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Entrar</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Allura|Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/css/main.css">
+    
+  </head>
+  <body>
+    <main>
+      <div class="container-fluid">
+        <div class="row">
+
+          <div class="col col-lg-4 col-md-5 col-xs-12 col-sm-12 d-block caixa">
+            <div class="formulario-login">
+
+              <h3>Entrar</h3>
+              <p class="texto-secundario-login">Faça login e conecte-se agora mesmo!!</p>
+
+              <form action="/login" method="post">
+                <div class="">
+                  <div class="form-group">
+
+                    <label for="email">E-mail</label>
+                    <input class="form-control" type="email" id="email" name="" value=""/>
+
+                  </div>
+                  <div class="form-group">
+
+                    <label for="passoword">Senha</label>
+                    <input class="form-control" type="password" id="password" name="" value=""/>
+
+                  </div>
+                  <input type="submit" class="btn btn-primary btn-block" name="Entrar" value="Entrar">
+                </div>
+              </form>
+
+              <div class="redes-sociais">
+                <p>Entrar com:</p>
+                <a href="/facebook"><span class="facebook"><img src="lib/img/social-face.png" alt="facebook"></span></a>
+                <a href="/google"><span class="facebook"><img src="lib/img/social-google.png" alt="google"></span></a>
+                <a href="/twitter"><span class="facebook"><img src="lib/img/social-twitter.png" alt="twitter"></span></a>
+                <a href="/spotify"><span class="facebook"><img src="lib/img/social-spotify.png" alt="spotify"></span></a>
+              </div>
+
+              <div class="cadastro">
+                <p>Ainda não tem cadastro? <a href="/cadastro">Cadaste-se.</a></p>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col col-lg-8 col-md-7 d-none d-lg-block d-xl-block d-md-block background-login">
+            <!--<h1><span class="aspas">&ldquo;</span>Muito mais que telemetria!<span class="aspas">&rdquo;</span></h1>
+            <h2>Alguma outra frase idiota aqui.</h2>-->
+          </div>
+
+
+        </div>
+      </div>
+    </main>
+  </body>
 </html>

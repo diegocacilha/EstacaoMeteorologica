@@ -1,11 +1,11 @@
 {
-  "name": "Estação Metereológica",
+  "name": "Estacao Metereologica",
   "version": "0.0.0",
   "homepage": "https://github.com/diegocacilha/estacaoMeteorologica",
   "authors": [
     "Diego Armando Cacilha <cacilha.tec@gmail.com>"
   ],
-  "description": "Frontend da estação metereológica",
+  "description": "Frontend da estacao metereologica",
   "license": "MIT",
   "ignore": [
     "**/.*",
