@@ -22,13 +22,13 @@
   "homepage": "https://github.com/diegocacilha/estacaoMeteorologica#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "bower": "^1.8.4",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "express-load": "^1.1.16",
     "mysql": "^2.16.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.4"
+    "nodemon": "^1.18.4",
+    "bower": "^1.8.4"
   }
 }
