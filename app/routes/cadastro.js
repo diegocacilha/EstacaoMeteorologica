@@ -8,7 +8,7 @@ module.exports = function(app){
         
         cadastroDAO.create(req.body, function(err, result){
             if(err){
-                console.log(err);
+                res.json(err);
             }else{
                 res.redirect('/');
             }
