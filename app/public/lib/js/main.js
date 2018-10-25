@@ -1,6 +1,6 @@
-var botaoLogin = $("#botao-login");
+var formulario = $('#form-login');
 var mensagemErro = $("#mensagem-erro-login");
-botaoLogin.click(autentica);
+formulario.submit(autentica);
 
 function autentica(event) {
 	event.preventDefault();
@@ -13,9 +13,7 @@ function autentica(event) {
 	};
 
 	$.post("/", objeto, function(res){
-		console.log(res);
-		var resposta = res.msg;
-		console.log(resposta);
-		mensagemErro.textContent = "resposta";
+		mensagemErro[0].textContent = res.msg;
+		mensagemErro[0].style.display = 'block';
 	})
 }
