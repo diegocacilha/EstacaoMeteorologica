@@ -7,6 +7,10 @@ CadastroDAO.prototype.create = function(usuario, callback){
 	this._conn.query('insert into users (email, pw) values ('+email+', '+pw+')', callback);
 }
 
+CadastroDAO.prototype.lista = function(callback){
+	this._conn.query('select * from users' , callback);
+}
+
 module.exports = function(){
 	return CadastroDAO;
 }
