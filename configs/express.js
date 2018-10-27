@@ -5,6 +5,14 @@ var port = process.env.PORT || 3000;
 var bodyParser = require('body-parser');
 var load = require('express-load');
 
+var sessions = require('express-session');
+
+app.use(sessions({
+    secret: 'bondeDoSecretao',
+    resave: false,
+    saveUninitialized: true
+}));
+
 //Permite configurar arquivos estáticos
 app.use(express.static('./node_modules'));//add locais estáticos
 app.use(express.static('./app/public'));//esse é para a pasta LIB do DAVI
