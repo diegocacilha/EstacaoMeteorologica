@@ -1,0 +1,21 @@
+h1{
+	background-color: yellow;
+}
+
+.box-cadastro{
+	background-color: #a69ea5;
+	height: 100%!important;
+	padding: 3rem;
+}
+
+.caixa-direita{
+	background-color: white;
+	padding: 2rem;
+	border-radius: 5px;
+	box-shadow: 5px 10px 8px grey;
+}
+
+.img-1{
+	background-color: transparent;
+	border: transparent;
+}
