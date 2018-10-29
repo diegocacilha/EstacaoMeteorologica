@@ -1,5 +1,9 @@
 module.exports = function(app){
     app.get('/', function(req, res){
+        if(req.session.uniqueId){
+            res.redirect('/home');
+            return;
+        }
         res.render('login');
     });
     app.post('/', function(req, res, next){
