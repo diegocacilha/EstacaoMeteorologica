@@ -1,20 +1,20 @@
 module.exports = function(app){
-    app.get('/cadastro', (req, res) => {
+    app.get('/usuarios', (req, res) => {
         if(!req.session.uniqueId){
             res.redirect('/');
             return;
         }
-        res.render('cadastro');
+        res.render('usuario');
     });
-    app.post('/cadastro', (req, res) => {
+    app.post('/usuarios/cadastro', (req, res) => {
         if(!req.session.uniqueId){
             res.redirect('/');
             return;
         }
         var conn = app.infra.connFactory();
-        var cadastroDAO = new app.infra.CadastroDAO(conn);
+        var usuarioDAO = new app.infra.UsuarioDAO(conn);
         
-        cadastroDAO.lista(function(err, result){
+        usuarioDAO.lista(function(err, result){
             if(err){
                 console.log(err);
             }else{
@@ -22,7 +22,7 @@ module.exports = function(app){
             }
         });
 
-        cadastroDAO.create(req.body, function(err, result){
+        usuarioDAO.create(req.body, function(err, result){
             if(err){
                 res.json(err);
             }else{

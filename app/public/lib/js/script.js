@@ -6,8 +6,13 @@ form.addEventListener('submit', function(evt){
         email: document.getElementById('email').value,
         pw: document.getElementById('pw').value
     }
-    sendReq('POST', '/', obj, function(res){
-        console.log(res);
+    sendReq('POST', '/login', obj, function(res){
+        if(res.status){
+            location.href = '/'
+        }else{
+            console.log(res.msg);
+        }
+        
     });
 });
 
@@ -21,7 +26,7 @@ function sendReq(method, url, data, callback){
     req.send(data);
     req.onreadystatechange = function(){
         if(req.readyState === 4){
-            callback(req.responseText);
+            callback(JSON.parse(req.response));
         }
     }
 }

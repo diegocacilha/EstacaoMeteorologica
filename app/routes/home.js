@@ -1,7 +1,7 @@
 module.exports = (app) => {
-    app.get('/home', (req, res) => {
+    app.get('/', (req, res) => {
         if(!req.session.uniqueId){
-            res.redirect('/');
+            res.redirect('/login');
             return;
         }
         res.render('home');

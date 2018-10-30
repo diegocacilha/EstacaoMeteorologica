@@ -15,4 +15,9 @@ module.exports = (app) => {
         });
         conn.end();
     });
+    app.post('/telemetrias/cadastro', (res, req)=>{
+        var conn = app.infra.connFactory();
+        var telemetrias = new app.infra.TelemetriasDAO(conn);
+        
+    });
 }

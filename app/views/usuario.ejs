@@ -3,35 +3,63 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Entrar</title>
+    <title>Cadastro de Usuários</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Allura|Raleway" rel="stylesheet">
     <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="lib/css/main.css">
+    <link rel="stylesheet" href="lib/css/cadastro-usuario.css">
     
   </head>
   <body>
     <main>
       <div class="container">
-      	<h1>Cadastro de usuarios</h1>
-      		<form action="/usuario" method="post">
-                
-                  <div class="form-group">
+        <div class="box-cadastro">
+          <div class="row">
+            <div class="col col-lg-6 col-md-7 d-none d-lg-block d-xl-block d-md-block">
+              <p>Aqui ainda não sei o que colocar :D</p>
+              <p>Provavelmente uma frescurinha</p>
+            </div>
+            <div class="col col-lg-6 col-md-5 col-xs-12 col-sm-12 d-block caixa-direita">
+          		<form action="/usuarios/cadastro" method="post">
 
-                    <label for="email">E-mail</label>
-                    <input class="form-control" type="email" id="email" name="email"/>
 
-                  </div>
-                  <div class="form-group">
+                      <div class="form-group">
 
-                    <label for="pw">Senha</label>
-                    <input class="form-control" type="password" id="pw" name="pw"/>
+                        <label for="email">E-mail</label>
+                        <input class="form-control" type="email" id="email" name="email" required/>
+                        <small id="instrucao-email" class="form-text text-muted">O e-mail será o login do usuário</small>
 
-                  </div>
-                  <input type="submit" class="btn btn-primary btn-block" value="Salvar">
-                  
-                </div>
-        	</form>
+                      </div>
+                      <div class="form-group">
+
+                        <label for="pw">Senha</label>
+                        <input class="form-control" type="password" id="pw" name="pw" required/>
+                        <small id="instrucao-senha" class="form-text text-muted">Senha deve conter no mínimo 8 dígitos</small>
+
+                      </div>
+
+                      <div class="form-group">
+
+                        <label for="nome">Nome</label>
+                        <input class="form-control" type="text" id="nome" name="nome" required/>
+                        <small id="instrucao-nome" class="form-text text-muted">Insira nome completo</small>
+
+                      </div>
+
+                      <div class="form-group">
+
+                        <label for="cpf">CPF</label>
+                        <input class="form-control" type="number" id="cpf" name="cpf" required/>
+                        <small id="instrucao-cpf" class="form-text text-muted">Insira o CPF</small>
+
+                      </div>
+
+                      <input type="submit" class="btn btn-primary btn-block" value="Salvar">
+            	</form>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   </body>
