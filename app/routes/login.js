@@ -17,6 +17,7 @@ module.exports = function(app){
             }
             if(result.length == 1){
                 session.uniqueId = req.body.email;
+                session.cookie.maxAge = 30000;
                 res.json({
                     status: true, 
                     msg: 'Login efetuado com sucesso'
