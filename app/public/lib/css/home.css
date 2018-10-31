@@ -1,0 +1,17 @@
+body{
+	background-color: #2C2C2C;
+}
+
+.principal{
+	margin-top: 1.5rem;
+	max-height: 280px;
+}
+
+.secundario{
+	height: 180px;
+	margin-top: 4.5rem;
+}
+
+#id-grafico{
+	max-height: 280px;
+}
