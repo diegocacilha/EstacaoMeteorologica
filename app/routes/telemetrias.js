@@ -10,7 +10,14 @@ module.exports = (app) => {
             if(err){
                 console.log(err);
             }else{
-                res.render('telemetrias', {lista: result});
+                res.format({
+                    html: function(){
+                        res.render('telemetrias', {lista: result});
+                    }, 
+                    json: function(){
+                        res.json(result);
+                    }
+                });
             }
         });
         conn.end();
