@@ -1,9 +1,9 @@
 <h1>Telemetrias</h1>
 <div id="cadastra-telemetria">
-    <form action="/telemetrias"  id="form-cadastro-telemetria">
-        <input type="text" name="data" placeholder="Data">
-        <input type="text" name="temperatura" placeholder="Temperatura">
-        <input type="text" name="pressao" placeholder="Pressão">
+    <form id="form-cadastro-telemetria">
+        <input type="date" name="data" placeholder="Data">
+        <input type="number" name="temperatura" placeholder="Temperatura">
+        <input type="number" name="pressao" placeholder="Pressão">
         <input type="submit" value="Salvar">
     </form>
 </div>
@@ -24,3 +24,18 @@
         </tr>
     <%}%>
 </table>
+<script src="lib/js/functions.js"></script>
+<script>
+    var form = document.querySelector('#form-cadastro-telemetria');
+    form.addEventListener('submit', function(evt){
+        evt.preventDefault();
+        var obj = {
+            data: form.data.value,
+            temperatura: form.temperatura.value,
+            pressao: form.pressao.value
+        }
+        sendRequest('POST', '/telemetrias/cadastro', obj, (retorno)=>{
+           console.log(retorno);
+        });
+    });
+</script>

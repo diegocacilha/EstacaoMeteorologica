@@ -22,9 +22,15 @@ module.exports = (app) => {
         });
         conn.end();
     });
-    app.post('/telemetrias/cadastro', (res, req)=>{
+    app.post('/telemetrias/cadastro', (req, res)=>{
         var conn = app.infra.connFactory();
         var telemetrias = new app.infra.TelemetriasDAO(conn);
-        
+
+        telemetrias.insert(req.body, function(err, result){
+            if(err){
+                console.log(err);
+            }
+        });
+        conn.end();
     });
 }
