@@ -1,3 +1,5 @@
+
+
 var ctx = document.getElementById("grafico-principal").getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'line',

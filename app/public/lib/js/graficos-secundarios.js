@@ -83,8 +83,12 @@ var grafico2 = new Chart(contexto2, {
                 bottom: 0
             }, 
         },
-        
+
         legend : {
+            display: false
+        },
+
+        title: {
             display: false
         },
 
