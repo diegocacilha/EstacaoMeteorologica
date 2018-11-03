@@ -22,7 +22,7 @@
         			<section class="col col-12 principal">
         				<div class="card">
         					<div class="card-body">
-        						<canvas id="grafico-principal" height="80px"></canvas>
+        						<canvas id="line-chart-principal" height="80px"></canvas>
         					</div>
         				</div>
         			</section>
@@ -61,8 +61,36 @@
     	</main>
     </body>
 
-    <script type="text/javascript" src="chart.js/dist/Chart.min.js"></script>
-    <script type="text/javascript" src="lib/js/busca-telemetrias.js"></script>
+	<script type="text/javascript" src="chart.js/dist/Chart.min.js"></script>
+	<script src="lib/js/functions.js"></script>
+	<script>
+		var canvas;
+		sendRequest('GET', '/telemetrias', {}, function(retorno){
+			var data = {
+				type: 'line',
+				data: {
+					labels: [],
+					datasets: [{
+						label: 'Temperatura',
+						data: [],
+						borderWidth: 2,
+						borderColor: 'rgba(77,166,253,0.85)',
+						backgroundColor: 'transparent'
+					}]
+				}
+			};
+			for(var i = 0; i < retorno.length; i++){
+				data.data.labels.push(retorno[i].data);
+				data.data.datasets[0].data.push(retorno[i].temperatura);
+			}
+			var chart = new Chart(canvas, data);
+		});
+
+		window.onload = function(){
+			canvas = document.querySelector('#line-chart-principal');
+		}
+	</script>
+    <!-- <script type="text/javascript" src="lib/js/busca-telemetrias.js"></script>
     <script type="text/javascript" src="lib/js/grafico-principal.js"></script>
-    <script type="text/javascript" src="lib/js/graficos-secundarios.js"></script>
+    <script type="text/javascript" src="lib/js/graficos-secundarios.js"></script> -->
 </html>

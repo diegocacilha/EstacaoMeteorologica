@@ -6,6 +6,7 @@ module.exports = function(app){
         }
         res.render('login');
     });
+    //Faz o POST para logar
     app.post('/login', function(req, res, next){
         var conn = app.infra.connFactory();
         var loginDAO = new app.infra.LoginDAO(conn);
@@ -17,7 +18,7 @@ module.exports = function(app){
             }
             if(result.length == 1){
                 session.uniqueId = req.body.email;
-                session.cookie.maxAge = 60000000;
+                session.cookie.maxAge = 3600000;
                 res.json({
                     status: true, 
                     msg: 'Login efetuado com sucesso'

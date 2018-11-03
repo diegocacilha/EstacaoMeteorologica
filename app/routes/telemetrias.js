@@ -23,9 +23,14 @@ module.exports = (app) => {
         conn.end();
     });
     app.post('/telemetrias/cadastro', (req, res)=>{
+        if(!req.session.uniqueId){
+            res.redirect('/');
+            return;
+        }
         var conn = app.infra.connFactory();
         var telemetrias = new app.infra.TelemetriasDAO(conn);
 
+        console.log(req.body);
         telemetrias.insert(req.body, function(err, result){
             if(err){
                 console.log(err);

@@ -1,7 +1,12 @@
 
 
 var ctx = document.getElementById("grafico-principal").getContext('2d');
-var myChart = new Chart(ctx, {
+
+(function(obj){
+    new Chart(ctx, obj);
+})(obj);
+
+var obj = {
     type: 'line',
     data: {
         labels: ["10/10", "11/10", "12/10", "13/10", "14/10", "15/10", "16/10", "17/10", "18/10", "19/10", "20/10", "21/10",], //neste array teremos que mandar as datas da tabela
@@ -44,4 +49,4 @@ var myChart = new Chart(ctx, {
             }]
         }
     }
-});
+}
