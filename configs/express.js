@@ -7,6 +7,10 @@ var consign = require('consign');
 
 var sessions = require('express-session');
 
+var helmet = require('helmet');
+
+app.use(helmet());
+
 app.use(sessions({
     secret: 'bondeDoSecretao',
     resave: false,
@@ -29,6 +33,7 @@ app.set('views', './app/views');
 app.listen(port, function(){
     console.log(`Servidor rodando na porta ${port}`);
 });
+
 
 module.exports = function(){
     consign({cwd:'app'})
