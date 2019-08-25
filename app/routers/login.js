@@ -8,11 +8,10 @@ module.exports = function(app){
     });
     //Faz o POST para logar
     app.post('/login', function(req, res, next){
-        console.log(app)
         var conn = app.infra.connFactory();
         var loginDAO = new app.infra.LoginDAO(conn);
         var session = req.session;
-
+        
         loginDAO.lista(req.body, function(err, result){
             if(err){
                 return next(err);
