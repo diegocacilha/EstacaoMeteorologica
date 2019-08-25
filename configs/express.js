@@ -3,7 +3,7 @@ var app = express();
 var port = process.env.PORT || 3000;
 
 var bodyParser = require('body-parser');
-var load = require('express-load');
+var consign = require('consign');
 
 var sessions = require('express-session');
 
@@ -31,8 +31,9 @@ app.listen(port, function(){
 });
 
 module.exports = function(){
-    load('routes', {cwd: 'app'})//carrega os módulos relacionados as rotas
-		.then('infra')//correga os módulos relacionados ao DAO
+    consign({cwd:'app'})
+        .include('infra')
+        .then('routers')
 		.into(app);
     return app;
 }
