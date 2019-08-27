@@ -1,12 +1,12 @@
 module.exports = function(app){
-    app.get('/usuarios', (req, res) => {
+    app.get('/cadastro', (req, res) => {
         if(!req.session.uniqueId){
             res.redirect('/');
             return;
         }
-        res.render('usuario');
+        res.render('cadastro');
     });
-    app.post('/usuarios/cadastro', (req, res) => {
+    app.post('/cadastro', (req, res) => {
         if(!req.session.uniqueId){
             res.redirect('/');
             return;
@@ -14,14 +14,6 @@ module.exports = function(app){
         var conn = app.infra.connFactory();
         var usuarioDAO = new app.infra.UsuarioDAO(conn);
         
-        usuarioDAO.lista(function(err, result){
-            if(err){
-                console.log(err);
-            }else{
-                console.log(result);
-            }
-        });
-
         usuarioDAO.create(req.body, function(err, result){
             if(err){
                 res.json(err);
