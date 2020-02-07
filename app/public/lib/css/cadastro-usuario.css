@@ -1,9 +1,10 @@
-h1{
-	background-color: yellow;
+body{
+	background-image: url('../img/parapente.jpg');
+	background-size: cover;  
 }
 
 .box-cadastro{
-	background-image: url('../img/parapente.jpg');
+
 	height: 100%!important;
 	padding: 3rem;
 }
