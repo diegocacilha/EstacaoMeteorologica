@@ -33,19 +33,36 @@
             <h1>Telemetrias</h1>
             <div id="cadastra-telemetria">
                 <form id="form-cadastro-telemetria">
-                    <input type="date" name="data" placeholder="Data">
-                    <input type="number" name="temperatura" placeholder="Temperatura">
-                    <input type="number" name="pressao" placeholder="Pressão">
-                    <input type="submit" value="Salvar">
+                    <div class="row">
+                        <div class="form-group col">
+
+                            <input class="form-control" type="date" name="data">
+                        </div>
+
+                        <div class="form-group col">
+                            <input class="form-control" type="number" name="temperatura" placeholder="Temperatura">
+                        </div>
+
+                        <div class="form-group col">
+                            <input class="form-control" type="number" name="pressao" placeholder="Pressão">
+                        </div>
+
+                        <input type="submit" value="Salvar">
+                    </div>
+                    
                 </form>
             </div>
-            <table class="table table-dark">
-                <tr>
-                    <td>ID</td>
-                    <td>Data</td>
-                    <td>Temperatura</td>
-                    <td>Pressão</td>
-                </tr>
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Data</th>
+                        <th>Temperatura</th>
+                        <th>Pressão</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+
                 <%for (var i = 0; i < lista.length; i++){%>
                     <tr>
                         <!--tem que ter o = na frente: '=' = print -->
@@ -53,6 +70,7 @@
                         <td><%=lista[i].data%></td>
                         <td><%=lista[i].temperatura%></td>
                         <td><%=lista[i].pressao%></td>
+                        <td><a class="btn btn-alert">Excluir</a></td>
                     </tr>
                 <%}%>
             </table>
