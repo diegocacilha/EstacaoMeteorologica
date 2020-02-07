@@ -26,3 +26,11 @@ function sendRequest(method, url, data, dadoEnvio = null, accept = null, callbac
         }
     }
 }
+
+function exibeErroAutenticacao(msg){
+    data = document.querySelector('#mensagem-erro-login');
+    console.log(data);
+    data.classList.add("alert");
+    data.classList.add("alert-danger");
+    data.textContent = msg;
+}
