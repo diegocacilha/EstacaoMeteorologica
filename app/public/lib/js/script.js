@@ -11,6 +11,8 @@ form.addEventListener('submit', function(evt){
             location.href = '/'
         }else{
             console.log(res.msg);
+            exibeErroAutenticacao(res.msg);
         }
     });
 });
+
