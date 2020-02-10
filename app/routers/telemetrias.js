@@ -30,6 +30,9 @@ module.exports = (app) => {
         telemetrias.insert(req.body, function (err, result) {
             if (err) {
                 console.log(err);
+            }else{
+                res.method = 'GET';
+                res.redirect('/telemetrias');
             }
         });
         conn.end();
