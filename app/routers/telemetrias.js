@@ -75,8 +75,8 @@ module.exports = (app) => {
 
     app.delete('/telemetrias/excluir', (req, res) => {
         validaSessao(req, res);
-        var id = req.params.id;
-        console.log('entoru');
+        var id = req.body;
+        
         var conn = app.infra.connFactory();
         var telemetrias = new app.infra.TelemetriasDAO(conn);
         telemetrias.delete(id, (err, result) => {
