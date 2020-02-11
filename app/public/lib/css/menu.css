@@ -1,0 +1,48 @@
+.menu{
+  padding: 20px;
+  border-bottom: 3rem;
+  background-color: #0d47a1;
+ 
+}
+
+.menu a{
+  color: #f8f9fa;
+  transition: color 1s;
+}
+
+.menu a:hover{
+  color: #e6ee9c;
+
+}
+
+.menu i{
+  color: #f8f9fa;
+  transition: color 1s;
+}
+
+.menu i:hover{
+  color: #e6ee9c;
+}
+
+.bg-topo{
+  background-color: #1a237e;
+}
+
+
+.dropdown-menu a{
+  color: black;
+}
+
+.dropdown button{
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.cabecalho{
+
+  border-radius: 0px 0px 0px 0px;
+  padding-top: 40px;
+  padding-bottom: 75px;
+}
+
