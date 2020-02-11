@@ -56,7 +56,7 @@ module.exports = (app) => {
         conn.end();
     });
 
-    app.post('/telemetrias/editar/:id', (req, res) => {
+    app.post('/telemetrias/editar/', (req, res) => {
         validaSessao(req, res);
         var telemetria = req.body;
 
