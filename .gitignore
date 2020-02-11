@@ -3,5 +3,3 @@
 .vscode
 
 /app/infra/config.js
-
-~/.gitignore
