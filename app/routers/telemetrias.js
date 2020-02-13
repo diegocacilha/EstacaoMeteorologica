@@ -22,19 +22,26 @@ module.exports = (app) => {
         });
         conn.end();
     });
-    app.post('/telemetrias/cadastro', (req, res) => {
+    app.post('/telemetrias/cadastro', (req, res, next) => {
         validaSessao(req, res);
-        var conn = app.infra.connFactory();
-        var telemetrias = new app.infra.TelemetriasDAO(conn);
-        telemetrias.insert(req.body, function (err, result) {
-            if (err) {
-                console.log(err);
-            }else{
-                res.method = 'GET';
-                res.redirect('/telemetrias');
-            }
-        });
-        conn.end();
+        if(req.body.data === "" || req.body.temperatura === "" || req.body.pressao === ""){
+            res.json({
+                erro: true,
+                msg: 'O objeto Telemetria não pode ser vazio'
+            });
+        }else {
+            var conn = app.infra.connFactory();
+            var telemetrias = new app.infra.TelemetriasDAO(conn);
+            telemetrias.insert(req.body, function (err, result) {
+                if (err) {
+                    console.log(err);
+                }else{
+                    res.method = 'GET';
+                    res.redirect('/telemetrias');
+                }
+            });
+            conn.end();
+        }
     });
     app.get('/telemetrias/editar/:id', (req, res) => {
         validaSessao(req, res);

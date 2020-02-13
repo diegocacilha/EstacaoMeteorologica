@@ -1,9 +1,5 @@
 module.exports = function(app){
     app.get('/login', function(req, res, next){
-        if(req.session.uniqueId){
-            res.redirect('/home');
-            return next();
-        }
         res.render('login');
     });
     //Faz o POST para logar

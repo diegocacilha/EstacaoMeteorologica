@@ -3,7 +3,7 @@ module.exports = (app) => {
         if(!req.session.uniqueId){
             res.redirect('/login');
             return;
-        }
-        res.render('home');
+        }else 
+            res.render('home');
     });
 }
