@@ -1,12 +1,8 @@
 var mysql = require('mysql');
+var config = require('./config');
 
 function connFactory(){
-    return conn = mysql.createConnection({
-        host: 'us-cdbr-iron-east-01.cleardb.net',
-        user: 'b6cb32128b8710',
-        password: '64dab02f',
-        database: 'heroku_9c64204be4edb81'
-    });
+    return conn = mysql.createConnection(config);
 }
 
 module.exports = function(){

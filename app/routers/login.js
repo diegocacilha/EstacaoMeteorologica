@@ -28,7 +28,6 @@ module.exports = function(app){
                     status: false, 
                     msg: 'Usuário ou senha inválido'
                 });
-                //res.send({status: false, msg: 'Login inválido'});
             }
             
         });

@@ -1,5 +1,5 @@
 .principal{
-	margin-top: 1.5rem;
+	margin-top: -8rem;
 	max-height: 280px;
 }
 
@@ -11,3 +11,9 @@
 #id-grafico{
 	max-height: 280px;
 }
+
+h1{
+	margin-bottom: 4rem;
+}
+
+
