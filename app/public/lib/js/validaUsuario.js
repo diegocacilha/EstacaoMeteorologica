@@ -10,7 +10,7 @@ form.addEventListener('submit', function(evt){
         if(res.status){
             location.href = '/'
         }else{
-            console.log(res.msg);
+
             exibeErroAutenticacao(res.msg);
         }
     });
