@@ -1,8 +1,8 @@
 module.exports = function(app){
-    app.get('/login', function(req, res){
+    app.get('/login', function(req, res, next){
         if(req.session.uniqueId){
             res.redirect('/home');
-            return;
+            return next();
         }
         res.render('login');
     });
@@ -19,9 +19,16 @@ module.exports = function(app){
             if(result.length == 1){
                 session.uniqueId = req.body.email;
                 session.cookie.maxAge = 3600000;
-                res.json({
-                    status: true, 
-                    msg: 'Login efetuado com sucesso'
+                res.format({
+                    html: function(){
+                        res.render('home');
+                    }, 
+                    json: function(){
+                        res.json({
+                            status: false,
+                            msg: 'Login efetuado com sucesso'
+                        });
+                    }
                 });
             }else{
                 res.json({

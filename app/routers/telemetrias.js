@@ -1,8 +1,8 @@
 module.exports = (app) => {
-    app.get('/telemetrias', (req, res) => {
+    app.get('/telemetrias', function(req, res, next) {
         if (!req.session.uniqueId) {
             res.redirect('/');
-            return;
+            return next();
         }
         var conn = app.infra.connFactory();
         var telemetrias = new app.infra.TelemetriasDAO(conn);
