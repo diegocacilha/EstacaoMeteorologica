@@ -26,7 +26,7 @@ module.exports = (app) => {
         validaSessao(req, res);
         var conn = app.infra.connFactory();
         var telemetrias = new app.infra.TelemetriasDAO(conn);
-
+        console.log(req.body);
         telemetrias.insert(req.body, function (err, result) {
             if (err) {
                 console.log(err);
@@ -77,13 +77,17 @@ module.exports = (app) => {
         validaSessao(req, res);
         var id = req.body;
         
+        console.log(id);
+
         var conn = app.infra.connFactory();
         var telemetrias = new app.infra.TelemetriasDAO(conn);
         telemetrias.delete(id, (err, result) => {
             if (err)
                 console.log(err);
-            else
+            else{
+                res.method = 'GET';
                 res.redirect('/telemetrias');
+            }
         });
         conn.end();
     });

@@ -121,7 +121,7 @@
                         <td><button class="btn btn-danger dropdown-toggle" data-toggle="dropdown">Ações</button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="/telemetrias/editar/<%=lista[i].id%>">Editar</a>
-                                <a class="dropdown-item" href="/telemetrias/excluir/<%=lista[i].id%>">Excluir</a>
+                                <a class="dropdown-item" data-telemetria="<%=lista[i].id%>" id="excluir-telemetria">Excluir</a>
                             </div>
                         </td>
                     </tr>
@@ -135,22 +135,49 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <script>
-            var form = document.querySelector('#form-cadastro-telemetria');
+    <script>
+        window.onload = function(){
+            let excluirTelmetria = document.getElementById('excluir-telemetria');
+            let telemetria = {
+                id: excluirTelmetria.dataset.telemetria
+            }
+            let json = JSON.stringify(telemetria);
+            excluirTelmetria.addEventListener('click', function(evt){
+                evt.preventDefault();
+                let req = new XMLHttpRequest();
+                req.open('DELETE', '/telemetrias/excluir', true);
+                req.setRequestHeader('Content-Type', 'application/json');
+                req.setRequestHeader('Accept', 'text/html');
+                
+                req.send(json);
+                req.onreadystatechange = function(){
+                    if(req.readyState === 4){
+                        // callback(JSON.parse(req.response));
+                        console.log(req.response);
+                    }
+                }
+                req.onload = function(){
+                    console.log(req.response);
+
+                }
+                // idTelemetria = JSON.parse(idTelemetria);
+                // console.log(idTelemetria);
+                // sendRequest('DELETE', '/telemetrias/excluir/', idTelemetria, function(retorno){
+                //     console.log('Teste');
+                //     console.log(retorno);
+                // });
+            });
+            let form = document.getElementById('form-cadastro-telemetria');
+        
             form.addEventListener('submit', function(evt){
                 evt.preventDefault();
-                var obj = {
-                    data: form.data.value,
-                    temperatura: form.temperatura.value,
-                    pressao: form.pressao.value
-                }
-                sendRequest('POST', '/telemetrias/cadastro', obj, (retorno)=>{
+                sendRequest('POST', '/telemetrias/cadastro', form, function(retorno){
                     console.log('Teste');
                     console.log(retorno);
                 });
             });
-
-            $('.dropdown-toggle').dropdown()
-        </script>
+        }
+        $('.dropdown-toggle').dropdown()
+    </script>
 </html>
 

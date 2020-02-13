@@ -16,7 +16,7 @@ TelemetriasDAO.prototype.lista_unica = function(id, callback){
 }
 
 TelemetriasDAO.prototype.delete = function(telemetria, callback){
-    this._conn.query('delete from telemetrias where id = ? ', telemetria, callback);    
+    this._conn.query('delete from telemetrias where id = '+telemetria.id, callback);    
 }
 
 TelemetriasDAO.prototype.update = function(telemetria, callback){
