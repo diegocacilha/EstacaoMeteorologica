@@ -134,17 +134,31 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script>
         window.onload = function(){
-            let form = document.getElementById('form-cadastro-telemetria');
-        
-            form.addEventListener('submit', function(evt){
+            let excluir = document.getElementById('excluir-telemetria');
+            let id = excluir.dataset.telemetria;
+
+            excluir.addEventListener('click', function(evt){
                 evt.preventDefault();
-                sendRequest('POST', '/telemetrias/cadastro', form, function(retorno){
-                    console.log('Teste');
-                    console.log(retorno);
-                });
+                let xhr = new XMLHttpRequest();
+                xhr.open('DELETE', '/telemetrias/excluir');
+                xhr.send(JSON.stringify(id));
+
+                xhr.onload = function(){
+                    console.log('Aqui');
+                };
             });
+
+            // let form = document.getElementById('form-cadastro-telemetria');
+        
+            // form.addEventListener('submit', function(evt){
+            //     evt.preventDefault();
+            //     sendRequest('POST', '/telemetrias/cadastro', form, function(retorno){
+            //         console.log('Teste');
+            //         console.log(retorno);
+            //     });
+            // });
         }
-        $('.dropdown-toggle').dropdown()
+        $('.dropdown-toggle').dropdown();
     </script>
 </html>
 
