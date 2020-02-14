@@ -4,6 +4,5 @@ class Usuario{
 		this._cpf = cpf;
 		this._email = email;
 		this._senha = senha;
-		
 	}
 }
