@@ -12,14 +12,15 @@ class TelemetriasController{
 
   adiciona(){
     event.preventDefault();
-    //instanciar classes da view;
+    //instanciar classes da view passando como parametro this.criaTelemetria;
+
   }
 
 
 
   criaTelemetria(){
 
-    let telemetria = new Telemetria(
+    return new Telemetria(
       this._inputData.value,
       this._inputTemperatura.value,
       this._inputPressao.value
