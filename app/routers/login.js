@@ -25,7 +25,7 @@ module.exports = function(app){
                     }, 
                     json: function(){
                         res.json({
-                            status: false,
+                            status: true,
                             msg: 'Login efetuado com sucesso'
                         });
                     }
