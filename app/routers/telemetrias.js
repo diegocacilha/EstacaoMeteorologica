@@ -60,22 +60,7 @@ module.exports = (app) => {
         });
         conn.end();
     });
-    app.post('/telemetrias/editar/', (req, res) => {
-        validaSessao(req, res);
-        var telemetria = req.body;
-
-        var conn = app.infra.connFactory();
-        var telemetrias = new app.infra.TelemetriasDAO(conn);
-        telemetrias.update(telemetria, (err, result) => {
-            if (err)
-                console.log(err);
-            else {
-                res.method = 'GET';
-                res.redirect('/telemetrias');
-            }
-        });
-        conn.end();
-    });
+    
     app.delete('/telemetrias/excluir', (req, res) => {
         validaSessao(req, res);
         var id = req.body;
@@ -86,8 +71,10 @@ module.exports = (app) => {
             if (err)
                 console.log(err);
             else{
-                res.method = 'GET';
-                res.redirect('/telemetrias');
+                res.json({
+                    status: true,
+                    msg : 'Deu boa'
+                });
             }
         });
         conn.end();

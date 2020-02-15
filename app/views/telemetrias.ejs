@@ -118,7 +118,7 @@
                         <td><button class="btn btn-danger dropdown-toggle" data-toggle="dropdown">Ações</button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="/telemetrias/editar/<%=lista[i].id%>">Editar</a>
-                                <a class="dropdown-item" data-telemetria="<%=lista[i].id%>" id="excluir-telemetria">Excluir</a>
+                                <a class="dropdown-item excluir-telemetria" data-telemetria="<%=lista[i].id%>">Excluir</a>
                             </div>
                         </td>
                     </tr>
@@ -134,25 +134,43 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script>
         window.onload = function(){
-            let excluir = document.getElementById('excluir-telemetria');
-            let id = {
-                id : excluir.dataset.telemetria
-            }
-
-
-            excluir.addEventListener('click', function(evt){
+            let excluir = document.getElementsByClassName('excluir-telemetria');
+            
+            console.log(excluir);
+            
+            var myFn = function(evt){
                 evt.preventDefault();
+                let elemento = this;
+                let id = {
+                    id : elemento.dataset.telemetria
+                }
                 let xhr = new XMLHttpRequest();
                 xhr.open('DELETE', '/telemetrias/excluir');
                 xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-                req.setRequestHeader('Accept', 'text/html');
-                console.log('ID aqui: ' + id);
+                xhr.setRequestHeader('Accept', 'text/html');
                 
                 xhr.onload = function(){
-                    console.log('Aqui');
+                    let retorno = JSON.parse(xhr.response);
+                    console.log(retorno);
+                    if(retorno.status){
+                        if (elemento.parentNode) {
+                            console.log('eita nois');
+                            let pai = elemento.parentNode.parentNode.parentNode;
+                            pai.removeChild(elemento);
+                        }
+                    }
                 };
+                xhr.onerror = function(){
+                    console.log('ERROOSS');
+                }
                 xhr.send(JSON.stringify(id));
-            });
+            }
+            for (var i = 0; i < excluir.length; i++) {
+                console.log(excluir);
+                excluir[i].addEventListener('click', myFn);
+            }
+
+            // excluir.addEventListener('click', );
 
             // let form = document.getElementById('form-cadastro-telemetria');
         
