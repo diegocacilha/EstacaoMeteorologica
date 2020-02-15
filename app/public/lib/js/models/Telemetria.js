@@ -1,7 +1,7 @@
 class Telemetria {
 
   constructor(data, temperatura, pressao){
-    this._data = new Date(data.getTime());
+    this._data = data;//new Date(data.getTime());
     this._temperatura = temperatura;
     this._pressao = pressao;
   }
