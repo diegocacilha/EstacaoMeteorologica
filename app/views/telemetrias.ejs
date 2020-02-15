@@ -135,17 +135,23 @@
     <script>
         window.onload = function(){
             let excluir = document.getElementById('excluir-telemetria');
-            let id = excluir.dataset.telemetria;
+            let id = {
+                id : excluir.dataset.telemetria
+            }
+
 
             excluir.addEventListener('click', function(evt){
                 evt.preventDefault();
                 let xhr = new XMLHttpRequest();
                 xhr.open('DELETE', '/telemetrias/excluir');
-                xhr.send(JSON.stringify(id));
-
+                xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+                req.setRequestHeader('Accept', 'text/html');
+                console.log('ID aqui: ' + id);
+                
                 xhr.onload = function(){
                     console.log('Aqui');
                 };
+                xhr.send(JSON.stringify(id));
             });
 
             // let form = document.getElementById('form-cadastro-telemetria');

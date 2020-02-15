@@ -21,9 +21,9 @@ app.use(sessions({
 app.use(express.static('./node_modules'));//add locais estáticos
 app.use(express.static('./app/public'));//esse é para a pasta LIB do DAVI
 
-app.use(bodyParser.urlencoded({extended: true}));
 //sempre será executado ao receber uma requisição
 app.use(bodyParser.json());//body-parser aceita o tipo JSON
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.set('view engine', 'ejs');
 
