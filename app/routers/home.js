@@ -1,9 +1,8 @@
 module.exports = (app) => {
     app.get('/home', (req, res) => {
-        if(!req.session.uniqueId){
-            res.redirect('/login');
-            return;
-        }else 
-            res.render('home');
+        res.json({
+            status: true,
+            msg: 'Alguma coisa que deve ser enviada pela rota /home'
+        });
     });
 }
