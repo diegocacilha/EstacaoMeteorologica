@@ -5,12 +5,11 @@ module.exports = function(app){
                 res.render('login');
             },
             json: function(){
-
+                res.json({
+                    status: true,
+                    msg: 'algo que deve ser enviado pela rota /login'
+                });
             }
-        });
-        res.json({
-            status: true,
-            msg: 'algo que deve ser enviado pela rota /login'
         });
     });
     //Faz o POST para logar
@@ -21,6 +20,7 @@ module.exports = function(app){
         
         loginDAO.lista(req.body, function(err, result){
             if(err){
+                console.log('Deu problema com o loginDAO.lista - login.js');
                 return next(err);
             }
             if(result.length == 1){
@@ -32,7 +32,7 @@ module.exports = function(app){
                     }, 
                     json: function(){
                         res.json({
-                            status: false,
+                            status: true,
                             msg: 'Login efetuado com sucesso'
                         });
                     }

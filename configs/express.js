@@ -34,7 +34,12 @@ app.listen(port, function(){
     console.log(`Servidor rodando na porta ${port}`);
 });
 
-
+app.use(function(req, res, next){
+    if(!req.session.uniqueId && req.method !== 'POST'){
+        res.render('login');
+    }else 
+        next();
+});
 module.exports = function(){
     consign({cwd:'app'})
         .include('infra')
