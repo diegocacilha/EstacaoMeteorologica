@@ -1,5 +1,5 @@
 {
-  "name": "EstaçãoMeteorológica",
+  "name": "estacaometeorologica",
   "version": "1.0.0",
   "description": "Estação meteorológica",
   "main": "index.js",
