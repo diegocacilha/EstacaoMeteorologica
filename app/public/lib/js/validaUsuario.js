@@ -8,7 +8,7 @@ form.addEventListener('submit', function(evt){
     }
     sendRequest('POST', '/login', obj, function(res){
         if(res.status){
-            location.href = '/'
+            location.href = '/home'
         }else{
 
             exibeErroAutenticacao(res.msg);

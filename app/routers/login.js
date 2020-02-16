@@ -1,10 +1,17 @@
 module.exports = function(app){
     app.get('/login', function(req, res, next){
-        if(req.session.uniqueId){
-            res.redirect('/home');
-            return next();
-        }
-        res.render('login');
+        res.format({
+            html: function(){
+                res.render('login');
+            },
+            json: function(){
+
+            }
+        });
+        res.json({
+            status: true,
+            msg: 'algo que deve ser enviado pela rota /login'
+        });
     });
     //Faz o POST para logar
     app.post('/login', function(req, res, next){
