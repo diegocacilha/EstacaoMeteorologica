@@ -77,7 +77,7 @@
                 <h1 class="display-4 text-light">Telemetrias</h1>
                 <div id="cadastra-telemetria">
 
-                    <form id="form-cadastro-telemetria" action="/telemetrias/cadastro" method="POST" onsubmit="telemetria.adiciona(event)" >
+                    <form id="form-cadastro-telemetria" class="" action="/telemetrias/cadastro" method="POST" onsubmit="telemetria.adiciona(event)" >
                         <div class="row">
                             <div class="form-group col">
 
@@ -139,9 +139,6 @@
     <script src="lib/js/controllers/TelemetriasController.js"></script>
     <script src="lib/js/models/ListaTelemetrias.js"></script>
     <script src="lib/js/views/TelemetriasView.js"></script>
-    <script>
-        let telemetria = new TelemetriasController();
-    </script>
 
   
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -150,54 +147,48 @@
 
     <script>
         window.onload = function(){
-            let excluirTelmetria = document.getElementById('excluir-telemetria');
-            let telemetria = {
-                id: excluirTelmetria.dataset.telemetria
-            }
-            let json = JSON.stringify(telemetria);
-            excluirTelmetria.addEventListener('click', function(evt){
-                evt.preventDefault();
+            // let excluirTelmetria = document.getElementById('excluir-telemetria');
+            // let telemetria = {
+            //     id: excluirTelmetria.dataset.telemetria
+            // }
+            // let json = JSON.stringify(telemetria);
+            // excluirTelmetria.addEventListener('click', function(evt){
+            //     evt.preventDefault();
 
-                let elemento = this;
-                let id = {
-                    id : elemento.dataset.telemetria
-                }
-                let xhr = new XMLHttpRequest();
-                xhr.open('DELETE', '/telemetrias/excluir');
-                xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-                xhr.setRequestHeader('Accept', 'text/html');
+            //     let elemento = this;
+            //     let id = {
+            //         id : elemento.dataset.telemetria
+            //     }
+            //     let xhr = new XMLHttpRequest();
+            //     xhr.open('DELETE', '/telemetrias/excluir');
+            //     xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+            //     xhr.setRequestHeader('Accept', 'text/html');
                 
-                xhr.onload = function(){
-                    let retorno = JSON.parse(xhr.response);
-                    console.log(retorno);
-                    if(retorno.status){
-                        if (elemento.parentNode) {
-                            console.log('eita nois');
-                            let pai = elemento.parentNode.parentNode.parentNode;
-                            pai.removeChild(elemento);
-                        }
+            //     xhr.onload = function(){
+            //     let retorno = JSON.parse(xhr.response);
+            //         console.log(retorno);
+            //         if(retorno.status){
+            //             if (elemento.parentNode) {
+            //                 console.log('eita nois');
+            //                 let pai = elemento.parentNode.parentNode.parentNode;
+            //                 pai.removeChild(elemento);
+            //             }
 
-                    }
-                };
-                xhr.onerror = function(){
-                    console.log('ERROOSS');
-                }
-                // idTelemetria = JSON.parse(idTelemetria);
-                // console.log(idTelemetria);
-                // sendRequest('DELETE', '/telemetrias/excluir/', idTelemetria, function(retorno){
-                //     console.log('Teste');
-                //     console.log(retorno);
-                // });
-            });
-            let form = document.getElementById('form-cadastro-telemetria');
-
-            form.addEventListener('submit', function(evt){
-                evt.preventDefault();
-                sendRequest('POST', '/telemetrias/cadastro', form, function(retorno){
-                    console.log('Teste');
-                    console.log(retorno);
-                });
-            });
+            //         }
+            //     };
+            //     xhr.onerror = function(){
+            //         console.log('ERROOSS');
+            //     }
+            // });
+            // let form = document.getElementsByName('form');
+            // console.log(form);
+            // form.addEventListener('submit', function(evt){
+            //     evt.preventDefault();
+            //     sendRequest('POST', '/telemetrias/cadastro', JSON.stringify(form), function(retorno){
+            //         console.log('Teste');
+            //         console.log(retorno);
+            //     });
+            // });
         }
         $('.dropdown-toggle').dropdown();
     </script>
