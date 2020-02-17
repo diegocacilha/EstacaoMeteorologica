@@ -12,7 +12,7 @@
 
 
     </head>
-    
+
     <body class="bg-white">
         <nav class="navbar navbar-expand-lg menu shadow bg-topo">
             <div class="container">
@@ -25,37 +25,37 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="/telemetrias">Telemetrias</a>
                     </li>
- 
+
                     <li class="nav-item">
                         <a class="nav-link" href="/cadastro">Cadastro</a>
                     </li>
-                </ul>  
+                </ul>
 
                 <ul class="navbar-nav">
 
- 
+
                     <li>
                         <a class="nav-link" href="/">
                             <i class="material-icons">search</i>
-                        </a> 
+                        </a>
                     </li>
 
                     <li>
                         <a class="nav-link" href="/">
                             <i class="material-icons">settings</i>
-                        </a> 
+                        </a>
                     </li>
 
                     <li>
                         <a class="nav-link" href="/">
                             <i class="material-icons">more</i>
-                        </a> 
+                        </a>
                     </li>
 
                     <li>
                         <a class="nav-link" href="/">
                             <i class="material-icons">thumb_up</i>
-                        </a> 
+                        </a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -71,31 +71,36 @@
                 </ul>
             </div>
         </nav>
-        
+
         <div class="jumbotron cabecalho bg-topo">
             <div class="container">
                 <h1 class="display-4 text-light">Telemetrias</h1>
                 <div id="cadastra-telemetria">
-                    <form action="/telemetrias/cadastro" method="POST">
+
+                    <form id="form-cadastro-telemetria" class="" action="/telemetrias/cadastro" method="POST" onsubmit="telemetria.adiciona(event)" >
                         <div class="row">
                             <div class="form-group col">
-                                <input class="form-control" type="date" name="data" required>
+
+                                <input class="form-control" type="date" name="data" id="data">
+
                             </div>
                             <div class="form-group col">
-                                <input class="form-control" type="number" name="temperatura" placeholder="Temperatura">
+                                <input class="form-control" type="number" name="temperatura" placeholder="Temperatura" id="temperatura">
                             </div>
                             <div class="form-group col">
-                                <input class="form-control" type="number" name="pressao" placeholder="Pressão">
+                                <input class="form-control" type="number" name="pressao" placeholder="Pressão" id="pressao">
                             </div>
+
                             <div class="form-group col">
                                 <input class="btn btn-primary form-control" type="submit" value="Salvar" >
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>
-        </div>            
-            
+        </div>
+
         <div class="container">
             <table class="table table-striped table-bordered table-borderless shadow-lg tabela-telemetrias">
                 <thead>
@@ -118,33 +123,73 @@
                         <td><button class="btn btn-danger dropdown-toggle" data-toggle="dropdown">Ações</button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="/telemetrias/editar/<%=lista[i].id%>">Editar</a>
-                                <a class="dropdown-item" data-telemetria="<%=lista[i].id%>" id="excluir-telemetria">Excluir</a>
+                                <a class="dropdown-item excluir-telemetria" data-telemetria="<%=lista[i].id%>">Excluir</a>
                             </div>
                         </td>
                     </tr>
                 <%}%>
             </table>
+            <div id="tabela-telemetrias-view"></div>
         </div>
-        
+
 
     </body>
-    <script src="lib/js/functions.js"></script>
+    <script src="lib/js/models/requisicaoLogin.js"></script>
+    <script src="lib/js/models/Telemetria.js"></script>
+    <script src="lib/js/controllers/TelemetriasController.js"></script>
+    <script src="lib/js/models/ListaTelemetrias.js"></script>
+    <script src="lib/js/views/TelemetriasView.js"></script>
+
+  
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
     <script>
         window.onload = function(){
-            let form = document.getElementById('form-cadastro-telemetria');
-        
-            form.addEventListener('submit', function(evt){
-                evt.preventDefault();
-                sendRequest('POST', '/telemetrias/cadastro', form, function(retorno){
-                    console.log('Teste');
-                    console.log(retorno);
-                });
-            });
+            // let excluirTelmetria = document.getElementById('excluir-telemetria');
+            // let telemetria = {
+            //     id: excluirTelmetria.dataset.telemetria
+            // }
+            // let json = JSON.stringify(telemetria);
+            // excluirTelmetria.addEventListener('click', function(evt){
+            //     evt.preventDefault();
+
+            //     let elemento = this;
+            //     let id = {
+            //         id : elemento.dataset.telemetria
+            //     }
+            //     let xhr = new XMLHttpRequest();
+            //     xhr.open('DELETE', '/telemetrias/excluir');
+            //     xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+            //     xhr.setRequestHeader('Accept', 'text/html');
+                
+            //     xhr.onload = function(){
+            //     let retorno = JSON.parse(xhr.response);
+            //         console.log(retorno);
+            //         if(retorno.status){
+            //             if (elemento.parentNode) {
+            //                 console.log('eita nois');
+            //                 let pai = elemento.parentNode.parentNode.parentNode;
+            //                 pai.removeChild(elemento);
+            //             }
+
+            //         }
+            //     };
+            //     xhr.onerror = function(){
+            //         console.log('ERROOSS');
+            //     }
+            // });
+            // let form = document.getElementsByName('form');
+            // console.log(form);
+            // form.addEventListener('submit', function(evt){
+            //     evt.preventDefault();
+            //     sendRequest('POST', '/telemetrias/cadastro', JSON.stringify(form), function(retorno){
+            //         console.log('Teste');
+            //         console.log(retorno);
+            //     });
+            // });
         }
-        $('.dropdown-toggle').dropdown()
+        $('.dropdown-toggle').dropdown();
     </script>
 </html>
-
