@@ -36,7 +36,7 @@ app.listen(port, function(){
 
 
 module.exports = function(){
-    consign({cwd:'./app'})
+    consign({cwd:'app'})
         .include('infra')
         .then('routers')
         .then('generic-route')
