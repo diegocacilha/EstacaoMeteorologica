@@ -13,10 +13,12 @@ module.exports = function(app){
         });
     });
     //Faz o POST para logar
+    const Login = require('../dao/LoginDAO');
     app.post('/login', function(req, res, next){
-        var conn = app.infra.connFactory();
-        var loginDAO = new app.infra.LoginDAO(conn);
-        var session = req.session;
+        
+        let loginDAO = new Login();
+        
+        let session = req.session;
         
         loginDAO.lista(req.body, function(err, result){
             if(err){
@@ -45,6 +47,5 @@ module.exports = function(app){
             }
             
         });
-        conn.end();
     });
 }

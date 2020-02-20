@@ -42,8 +42,7 @@ app.use(function(req, res, next){
 });
 module.exports = function(){
     consign({cwd:'app'})
-        .include('infra')
-        .then('routers')
+        .include('routers')
         .then('generic-route')
 		.into(app);
     return app;
