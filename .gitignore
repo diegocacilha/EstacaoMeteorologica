@@ -1,5 +1,5 @@
-#/node_modules
+/node_modules
 
 .vscode
 
-# /app/infra/config.js
+/app/infra/config.js
