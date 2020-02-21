@@ -27,6 +27,21 @@ module.exports = class TelemetriasDAO{
         });
         return retorno;
     }
+    insert(telemetria){
+        const retorno = new Promise(function(resolve, reject){
+            const conn = Conn.getConnection();
+            let query = 'insert into telemetrias set ? '; 
+            let callback = function(err, result, fields){
+                if(err){
+                    reject(err);
+                }else
+                    resolve(result);
+            }
+            conn.query(query, telemetria, callback);
+            conn.end();
+        });
+        return retorno;        
+    }
 }
 // function TelemetriasDAO(conn){
 //     this._conn = conn;
@@ -35,10 +50,7 @@ module.exports = class TelemetriasDAO{
 //     this._conn.query('select * from telemetrias', callback);
 // }
 // TelemetriasDAO.prototype.insert = function(telemetria, callback){
-//     this._conn.query('insert into telemetrias ' + 
-//                      '(data, temperatura, pressao) values (\'' + telemetria.data + '\',' 
-//                                                              + telemetria.temperatura + ','
-//                                                              + telemetria.pressao + ');', callback);
+//     this._conn.query();
 // }
 
 // TelemetriasDAO.prototype.lista_unica = function(id, callback){

@@ -2,7 +2,8 @@ const Telemetria = require('../dao/TelemetriasDAO');
 module.exports = (app) => {
     app.get('/telemetrias', function(req, res, next) {
         let telemetrias = new Telemetria();
-        telemetrias.lista().then(function(result){
+        telemetrias.lista()
+        .then(function(result){
             res.format({
                 html: function () {
                     res.render('telemetrias', { lista: result });
@@ -17,17 +18,13 @@ module.exports = (app) => {
     });
 
     app.post('/telemetrias/cadastro', (req, res) => {
-        var conn = app.infra.connFactory();
-        var telemetrias = new app.infra.TelemetriasDAO(conn);
-        telemetrias.insert(req.body, function (err, result) {
-            if (err) {
-                console.log(err);
-            }else{
-                res.method = 'GET';
-                res.redirect('/telemetrias');
-            }
-        });
-        conn.end();
+        var telemetrias = new Telemetria();
+        telemetrias.insert(req.body)
+        .then(function (result) {
+            res.method = 'GET';
+            res.redirect('/telemetrias');
+        })
+        .catch((err) => console.log(err));
     });
 
     app.delete('/telemetrias/excluir', function (req, res) {
