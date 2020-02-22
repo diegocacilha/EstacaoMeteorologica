@@ -10,7 +10,7 @@ class Header{
 
                 <ul class="navbar-nav">
                     <li class="nav-item ">
-                        <a class="nav-link" href="/">Home</a>
+                        <a class="nav-link" href="/home">Home</a>
                     </li>
 
                     <li class="nav-item active">
@@ -55,7 +55,7 @@ class Header{
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="/editar/perfil">Meu perfil</a>
-                            <a class="dropdown-item" href="/logoff">Sair</a>
+                            <a class="dropdown-item" href="/logout">Sair</a>
                         </div>
 
                     </li>

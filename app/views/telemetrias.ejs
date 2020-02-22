@@ -20,7 +20,7 @@
 
                 <ul class="navbar-nav">
                     <li class="nav-item ">
-                        <a class="nav-link" href="/">Hdome</a>
+                        <a class="nav-link" href="/home">Home</a>
                     </li>
 
                     <li class="nav-item active">
@@ -65,7 +65,7 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="/editar/perfil">Meu perfil</a>
-                            <a class="dropdown-item" href="/logoff">Sair</a>
+                            <a class="dropdown-item" href="/logout">Sair</a>
                         </div>
 
                     </li>
@@ -77,22 +77,24 @@
             <div class="container">
                 <h1 class="display-4 text-light">{{titulo}}</h1>
                 <div id="cadastra-telemetria">
+
                     <form id="form-cadastro-telemetria" action="/telemetrias/cadastro" method="POST" onsubmit="telemetria.adiciona(event)" >
                         <div class="row">
                             <div class="form-group col">
 
                                 <input class="form-control" type="date" name="data" id="data">
-                            </div>
 
+                            </div>
                             <div class="form-group col">
                                 <input class="form-control" type="number" name="temperatura" placeholder="Temperatura" id="temperatura">
                             </div>
-
                             <div class="form-group col">
                                 <input class="form-control" type="number" name="pressao" placeholder="Pressão" id="pressao">
                             </div>
 
-                            <input class="btn btn-primary" type="submit" value="Salvar" id="salvar">
+                            <div class="form-group col">
+                                <input class="btn btn-primary form-control" type="submit" value="Salvar" >
+                            </div>
                         </div>
 
                     </form>

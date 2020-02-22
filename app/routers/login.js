@@ -1,10 +1,17 @@
 module.exports = function(app){
-    app.get('/login', function(req, res){
-        if(req.session.uniqueId){
-            res.redirect('/home');
-            return;
-        }
-        res.render('login');
+    app.get('/login', function(req, res, next){
+        res.format({
+            html: function(){
+                res.render('login');
+            },
+            json: function(){
+
+            }
+        });
+        res.json({
+            status: true,
+            msg: 'algo que deve ser enviado pela rota /login'
+        });
     });
     //Faz o POST para logar
     app.post('/login', function(req, res, next){
@@ -19,9 +26,16 @@ module.exports = function(app){
             if(result.length == 1){
                 session.uniqueId = req.body.email;
                 session.cookie.maxAge = 3600000;
-                res.json({
-                    status: true, 
-                    msg: 'Login efetuado com sucesso'
+                res.format({
+                    html: function(){
+                        res.render('home');
+                    }, 
+                    json: function(){
+                        res.json({
+                            status: false,
+                            msg: 'Login efetuado com sucesso'
+                        });
+                    }
                 });
             }else{
                 res.json({

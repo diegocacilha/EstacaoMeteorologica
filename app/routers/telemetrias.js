@@ -1,9 +1,5 @@
 module.exports = (app) => {
-    app.get('/telemetrias', (req, res) => {
-        if (!req.session.uniqueId) {
-            res.redirect('/');
-            return;
-        }
+    app.get('/telemetrias', function(req, res, next) {
         var conn = app.infra.connFactory();
         var telemetrias = new app.infra.TelemetriasDAO(conn);
         telemetrias.lista(function (err, result) {
@@ -23,10 +19,8 @@ module.exports = (app) => {
         conn.end();
     });
     app.post('/telemetrias/cadastro', (req, res) => {
-        validaSessao(req, res);
         var conn = app.infra.connFactory();
         var telemetrias = new app.infra.TelemetriasDAO(conn);
-        console.log(req.body);
         telemetrias.insert(req.body, function (err, result) {
             if (err) {
                 console.log(err);
@@ -37,9 +31,7 @@ module.exports = (app) => {
         });
         conn.end();
     });
-
     app.get('/telemetrias/editar/:id', (req, res) => {
-        validaSessao(req, res);
         var id = req.params.id;
 
         var conn = app.infra.connFactory();
@@ -55,9 +47,7 @@ module.exports = (app) => {
         });
         conn.end();
     });
-
     app.post('/telemetrias/editar/', (req, res) => {
-        validaSessao(req, res);
         var telemetria = req.body;
 
         var conn = app.infra.connFactory();
@@ -72,12 +62,8 @@ module.exports = (app) => {
         });
         conn.end();
     });
-
     app.delete('/telemetrias/excluir', (req, res) => {
-        validaSessao(req, res);
         var id = req.body;
-        
-        console.log(id);
 
         var conn = app.infra.connFactory();
         var telemetrias = new app.infra.TelemetriasDAO(conn);
@@ -91,11 +77,4 @@ module.exports = (app) => {
         });
         conn.end();
     });
-
-    var validaSessao = (req, res) => {
-        if (!req.session.uniqueId) {
-            res.redirect('/');
-            return;
-        }
-    };
 }
