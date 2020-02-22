@@ -1,6 +1,6 @@
-var express = require('express');
-var app = express();
-var port = process.env.PORT || 3000;
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3000;
 
 var bodyParser = require('body-parser');
 var consign = require('consign');
@@ -33,7 +33,7 @@ app.set('views', './app/views');
 app.listen(port, function(){
     console.log(`Servidor rodando na porta ${port}`);
 });
-
+// Rotas carregadas primeiro serão executadas primeiro
 app.use(function(req, res, next){
     if(!req.session.uniqueId && req.method !== 'POST'){
         res.render('login');
@@ -42,8 +42,7 @@ app.use(function(req, res, next){
 });
 module.exports = function(){
     consign({cwd:'app'})
-        .include('infra')
-        .then('routers')
+        .include('routers')
         .then('generic-route')
 		.into(app);
     return app;
