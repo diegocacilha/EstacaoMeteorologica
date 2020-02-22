@@ -26,10 +26,6 @@ class TelemetriasController{
     console.log(array);
     this._view.atualiza(array);
 
-    //this.view.atualiza(this._template());
-
-    //instanciar classes da view passando como parametro this.criaTelemetria;
-
   }
 
 

@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="lib/css/main.css">
         <link rel="stylesheet" href="lib/css/telemetrias.css">
         <link rel="stylesheet" href="lib/css/menu.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
     </head>
@@ -72,9 +73,9 @@
             </div>
         </nav>
 
-        <div class="jumbotron cabecalho bg-topo">
+        <div class="jumbotron cabecalho bg-topo" id="app">
             <div class="container">
-                <h1 class="display-4 text-light">Telemetrias</h1>
+                <h1 class="display-4 text-light">{{titulo}}</h1>
                 <div id="cadastra-telemetria">
 
                     <form id="form-cadastro-telemetria" action="/telemetrias/cadastro" method="POST" onsubmit="telemetria.adiciona(event)" >
@@ -113,23 +114,15 @@
                     </tr>
                 </thead>
 
-                <%for (var i = 0; i < lista.length; i++){%>
-                    <tr>
-                        <!--tem que ter o = na frente: '=' = print -->
-                        <td><%=lista[i].id%></td>
-                        <td><%=lista[i].data%></td>
-                        <td><%=lista[i].temperatura%></td>
-                        <td><%=lista[i].pressao%></td>
-                        <td><button class="btn btn-danger dropdown-toggle" data-toggle="dropdown">Ações</button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="/telemetrias/editar/<%=lista[i].id%>">Editar</a>
-                                <a class="dropdown-item excluir-telemetria" data-telemetria="<%=lista[i].id%>">Excluir</a>
-                            </div>
-                        </td>
-                    </tr>
-                <%}%>
+                <tbody>
+                    <corpo-tabela 
+                        v-for="telemetria in listaDeTelemetrias"
+                        v-bind:todo="telemetria"
+                        v-bind:key="telemetria.id">
+                        
+                    </corpo-tabela>
+                </tbody>
             </table>
-            <div id="tabela-telemetrias-view"></div>
         </div>
 
 
@@ -139,28 +132,91 @@
     <script src="lib/js/controllers/TelemetriasController.js"></script>
     <script src="lib/js/models/ListaTelemetrias.js"></script>
     <script src="lib/js/views/TelemetriasView.js"></script>
+    
+    <!-- Meu deus vamos organizar essa bagaça!!!
+        Aqui estou instanciando minha classe controller de telemetrias... com a implementação do vue.js vou capar fora-->
     <script>
         let telemetria = new TelemetriasController();
     </script>
 
+    <!--Aqui estou importando arquivos importantes do bootstrap para fazer os menus dropdown-->
   
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+
+     <!--Aqui estou instanciando o vue e fazendo as definições iniciais-->
+
+    <script type="text/javascript">
+        let req = new XMLHttpRequest();
+        req.open('GET', '/telemetrias', true);
+        req.setRequestHeader('Accept', 'application/json');
+        req.send();
+        req.onreadystatechange = function(){
+        if(req.readyState === 4){
+            //console.log(req.response);
+        }}
+
+        req.onload = function(){
+            console.log(req.response);
+
+        }
+        
+        
+        Vue.component('corpo-tabela', {
+            props: ['telemetria'],
+            template: '<tr>' +
+            
+            '<td>{{ telemetria.id }}</td>' +
+            '<td>{{ telemetria.data }}</td>' +
+            '<td>{{ telemetria.temperatura }}</td>' +
+            '<td>{{ telemetria.pressao }}</td>' +
+
+            '</tr>'
+        })
+
+        var app = new Vue(
+            {
+            el: '#app',
+            data: {
+                titulo: 'BAH',
+                listaDeTelemetrias: telemetriasParseado
+            }
+        });
+
+    </script>
+
+    <!-- Aqui diegão meteu o loko-->
+
     <script>
         window.onload = function(){
-            let excluirTelmetria = document.getElementById('excluir-telemetria');
+
+            let excluirTelmetria = document.querySelector('#excluir-telemetria');
+            console.log(excluirTelmetria);
             let telemetria = {
                 id: excluirTelmetria.dataset.telemetria
             }
             let json = JSON.stringify(telemetria);
             excluirTelmetria.addEventListener('click', function(evt){
                 evt.preventDefault();
+<<<<<<< HEAD
 
                 let elemento = this;
                 let id = {
                     id : elemento.dataset.telemetria
+=======
+                let req = new XMLHttpRequest();
+                req.open('DELETE', '/telemetrias/excluir', true);
+                req.setRequestHeader('Content-Type', 'application/json');
+                req.setRequestHeader('Accept', 'text/html');
+
+                req.send(json);
+                req.onreadystatechange = function(){
+                    if(req.readyState === 4){
+                        console.log(req.response);
+                    }
+>>>>>>> 72a37937f4440e426729658a0d3f9840ca4fbf37
                 }
                 let xhr = new XMLHttpRequest();
                 xhr.open('DELETE', '/telemetrias/excluir');
